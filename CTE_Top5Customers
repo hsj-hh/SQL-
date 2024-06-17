@@ -1,0 +1,15 @@
+Driving insights on top 5 customers 
+"SELECT B.customer_id, 
+       B.first_name, 
+       B.last_name, 
+       D.city, 
+       E.country, 
+       SUM(A.amount) AS total_amount
+FROM customer AS B
+RIGHT JOIN payment AS A ON A.customer_id = B.customer_id
+JOIN address AS C ON B.address_id = C.address_id
+JOIN city AS D ON C.city_id = D.city_id 
+JOIN country AS E ON D.country_id = E.country_id 
+GROUP BY B.customer_id, D.city, E.country
+ORDER BY total_amount DESC
+LIMIT 5;"
