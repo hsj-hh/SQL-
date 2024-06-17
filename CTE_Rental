@@ -1,0 +1,19 @@
+Deriving insights on Rental Transactions  
+SELECT 
+    MIN(rental_rate) AS min_rent,
+    MAX(rental_rate) AS max_rent,
+    AVG(rental_rate) AS avg_rent,
+    (SELECT release_year FROM film GROUP BY release_year ORDER BY COUNT(*) DESC LIMIT 1) AS mode_release_year,
+    (SELECT language_id FROM film GROUP BY language_id ORDER BY COUNT(*) DESC LIMIT 1) AS mode_language_id,
+    MIN(rental_duration) AS min_duration,
+    MAX(rental_duration) AS max_duration,
+    AVG(rental_duration) AS avg_duration,
+    MIN(length) AS min_length,
+    MAX(length) AS max_length,
+    AVG(length) AS avg_length,    
+    MIN(replacement_cost) AS min_replacement_cost,
+    MAX(replacement_cost) AS max_replacement_cost,
+    AVG(replacement_cost) AS avg_replacement_cost,
+    (SELECT rating FROM film GROUP BY rating ORDER BY COUNT(*) DESC LIMIT 1) AS mode_rating
+FROM 
+    film; 
